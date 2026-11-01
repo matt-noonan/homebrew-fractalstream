@@ -1,0 +1,44 @@
+name: Test
+
+# Installs and tests fsrun (and, on macOS, the cask) from this commit of the
+# tap, on each platform the release builds support.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - ubuntu-24.04
+          - macos-15
+          - macos-15-intel
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+    - name: Set up Homebrew
+      uses: Homebrew/actions/setup-homebrew@main
+
+    - name: Use this commit of the tap
+      run: |
+        brew tap matt-noonan/fractalstream
+        cd "$(brew --repo matt-noonan/fractalstream)"
+        git fetch origin "$GITHUB_SHA"
+        git checkout --detach FETCH_HEAD
+        brew trust matt-noonan/fractalstream
+
+    - name: Install and test fsrun
+      run: |
+        brew install matt-noonan/fractalstream/fsrun
+        fsrun --version
+        brew test matt-noonan/fractalstream/fsrun
+
+    - if: runner.os == 'macOS'
+      name: Install the app
+      run: |
+        brew install --cask --appdir="$RUNNER_TEMP/Applications" matt-noonan/fractalstream/fractalstream
+        ls "$RUNNER_TEMP/Applications/FractalStream.app/Contents/MacOS"
