@@ -1,9 +1,9 @@
 cask "fractalstream" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "0.0.2-alpha.1"
-  sha256 arm:   "4fea0b02fa7180b3491394195c79c8bfbfec55d22611f9cd420221e10524dd7e",
-         intel: "bf776ca74ec191627c9539bd8f8a3050c6d289733a3e84ad570eda503d33aa44"
+  version "0.0.4-alpha"
+  sha256 arm:   "68568cd21b0e98c1369258aa6ff493ad5fa509f4fb4b20f8c391e71b8e5e2de7",
+         intel: "3eab5b5a89c7216f7528e530479c7416c4679a24e95a7e516afff3f3ead96dc7"
 
   url "https://github.com/matt-noonan/FractalStream/releases/download/v#{version}/FractalStream-#{version}-macos-#{arch}.zip"
   name "FractalStream"

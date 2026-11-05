@@ -1,7 +1,7 @@
 class Fsrun < Formula
   desc "Command-line renderer and tester for FractalStream projects"
   homepage "https://github.com/matt-noonan/FractalStream"
-  version "0.0.2-alpha.1"
+  version "0.0.4-alpha"
   license "BSD-3-Clause"
 
   # Check the repository's tags rather than its latest release, since
@@ -17,11 +17,11 @@ class Fsrun < Formula
   on_macos do
     on_arm do
       url "https://github.com/matt-noonan/FractalStream/releases/download/v#{version}/fsrun-#{version}-macos-arm64.tar.gz"
-      sha256 "eb06506e290825e2cfc21e17c5a42210ce552e174dbb26a3fda1b46cf4501753"
+      sha256 "94687c6cd2bb4dd554e9dcbca0fe1adf04d4a2c015502eef47379955de3511e6"
     end
     on_intel do
       url "https://github.com/matt-noonan/FractalStream/releases/download/v#{version}/fsrun-#{version}-macos-x86_64.tar.gz"
-      sha256 "6e9d408d2cf469bc2ac28834e0fa75ae33a1fb872e8ba838a88bb8caabfa7420"
+      sha256 "be40485f4db56ab449bb9daff964044982694828146ce9c409cf032005065037"
     end
   end
   # The Linux build bundles the shared libraries it needs (LLVM 12 among
@@ -30,7 +30,7 @@ class Fsrun < Formula
     depends_on arch: :x86_64
     on_intel do
       url "https://github.com/matt-noonan/FractalStream/releases/download/v#{version}/fsrun-#{version}-linux-x86_64.tar.gz"
-      sha256 "032491ecf9c6f0468221404a62cdca37ebb0dcd6696940b373354adf487b8065"
+      sha256 "d4c4901e6e980ed8d8a2f20a511f14ea106443a066029fb492d55ae6a32d32d0"
     end
   end
 
