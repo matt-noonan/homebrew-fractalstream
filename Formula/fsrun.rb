@@ -46,12 +46,12 @@ class Fsrun < Formula
   end
 
   test do
-    (testpath/"project.yaml").write <<~YAML
+    (testpath/"project.fs").write <<~YAML
       script: |
-        @viewer "Plane" var=z
+        @viewer "Plane"
         color <- if |z| < 1 then blue else black
     YAML
-    system bin/"fsrun", "project.yaml", "--snapshot", "Plane", "--output", "plane.png"
+    system bin/"fsrun", "snapshot", "--project", "project.fs", "--viewer", "Plane", "--output", "plane.png"
     assert_path_exists testpath/"plane.png"
   end
 end
